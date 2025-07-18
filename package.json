@@ -11,6 +11,11 @@
     "url": "https://github.com/reekystive/vscode-package-navigator"
   },
   "license": "MIT",
+  "author": {
+    "name": "reekystive",
+    "email": "reekystive@gmail.com"
+  },
+  "publisher": "reekystive",
   "type": "module",
   "main": "./dist/extension.js",
   "scripts": {
