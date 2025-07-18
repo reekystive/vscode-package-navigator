@@ -12,10 +12,10 @@ importers:
         specifier: ^10.0.10
         version: 10.0.10
       '@types/node':
-        specifier: 20.x
+        specifier: ^20.0.0
         version: 20.19.8
       '@types/vscode':
-        specifier: ^1.102.0
+        specifier: ^1.99.0
         version: 1.102.0
       '@vscode/test-cli':
         specifier: ^0.0.11
