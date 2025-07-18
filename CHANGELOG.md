@@ -4,7 +4,7 @@ All notable changes to the Node.js Package Navigator extension will be documente
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/), and this project adheres to [Semantic Versioning](https://semver.org/).
 
-## [0.0.1] - 2025-01-18
+## [0.1.0] - 2025-01-18
 
 ### Added
 
