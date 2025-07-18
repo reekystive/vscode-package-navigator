@@ -91,14 +91,16 @@ jobs:
     name: Publish to Open VSX
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
       - name: Setup Node.js with corepack
         uses: ./.github/actions/setup-node
 
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+      - name: Setup cache
+        uses: ./.github/actions/setup-cache
+        with:
+          restore-key-prefix: 'ovsx-cache'
+
+      - name: Install ovsx CLI
+        run: pnpm add -g ovsx --dangerously-allow-all-builds
 
       - name: Download build artifacts
         uses: actions/download-artifact@v4
@@ -106,7 +108,7 @@ jobs:
           name: vscode-extension
 
       - name: Publish to Open VSX
-        run: pnpm ovsx publish *.vsix --pat ${{ secrets.OVSX_TOKEN }}
+        run: pnpm exec ovsx publish --packagePath *.vsix --pat ${{ secrets.OVSX_TOKEN }}
 
   publish-vsce:
     if: github.ref == 'refs/heads/main'
@@ -115,14 +117,16 @@ jobs:
     name: Publish to VS Code Marketplace
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
       - name: Setup Node.js with corepack
         uses: ./.github/actions/setup-node
 
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+      - name: Setup cache
+        uses: ./.github/actions/setup-cache
+        with:
+          restore-key-prefix: 'vsce-cache'
+
+      - name: Install vsce CLI
+        run: pnpm add -g vsce --dangerously-allow-all-builds
 
       - name: Download build artifacts
         uses: actions/download-artifact@v4
@@ -130,4 +134,4 @@ jobs:
           name: vscode-extension
 
       - name: Publish to VS Code Marketplace
-        run: pnpm vsce publish --packagePath *.vsix --pat ${{ secrets.VSCE_TOKEN }}
+        run: pnpm exec vsce publish --packagePath *.vsix --pat ${{ secrets.VSCE_TOKEN }}
