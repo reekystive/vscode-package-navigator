@@ -38,7 +38,7 @@ export function activate(context: vscode.ExtensionContext) {
   // This line of code will only be executed once when your extension is activated
   console.log('Congratulations, your extension "package-navigator" is now active!');
 
-  // Open package.json of active file
+  // Open package.json
   const openPackageJson = vscode.commands.registerCommand('package-navigator.openPackageJson', async () => {
     const activeEditor = vscode.window.activeTextEditor;
     if (!activeEditor) {
@@ -56,7 +56,7 @@ export function activate(context: vscode.ExtensionContext) {
     await vscode.window.showTextDocument(document);
   });
 
-  // Reveal package.json of active file in explorer
+  // Reveal package.json in explorer
   const revealPackageJson = vscode.commands.registerCommand('package-navigator.revealPackageJson', async () => {
     const activeEditor = vscode.window.activeTextEditor;
     if (!activeEditor) {
@@ -73,7 +73,25 @@ export function activate(context: vscode.ExtensionContext) {
     await vscode.commands.executeCommand('revealInExplorer', vscode.Uri.file(packageJsonAbsolutePath));
   });
 
-  // Open package.json of active file in integrated terminal
+  // Reveal package folder in explorer
+  const revealPackageFolder = vscode.commands.registerCommand('package-navigator.revealPackageFolder', async () => {
+    const activeEditor = vscode.window.activeTextEditor;
+    if (!activeEditor) {
+      vscode.window.showErrorMessage('No active file');
+      return;
+    }
+
+    const packageJsonAbsolutePath = await findPackageJson(activeEditor.document.fileName);
+    if (!packageJsonAbsolutePath) {
+      vscode.window.showErrorMessage('No package.json found');
+      return;
+    }
+
+    const packageDir = path.dirname(packageJsonAbsolutePath);
+    await vscode.commands.executeCommand('revealInExplorer', vscode.Uri.file(packageDir));
+  });
+
+  // Open package.json in integrated terminal
   const openPackageJsonInTerminal = vscode.commands.registerCommand(
     'package-navigator.openPackageJsonInTerminal',
     async () => {
@@ -101,7 +119,7 @@ export function activate(context: vscode.ExtensionContext) {
     }
   );
 
-  // Copy relative path of active file's package.json
+  // Copy relative path of package.json
   const copyPackageJsonRelativePath = vscode.commands.registerCommand(
     'package-navigator.copyPackageJsonRelativePath',
     async () => {
@@ -129,7 +147,7 @@ export function activate(context: vscode.ExtensionContext) {
     }
   );
 
-  // Copy absolute path of active file's package.json
+  // Copy absolute path of package.json
   const copyPackageJsonAbsolutePath = vscode.commands.registerCommand(
     'package-navigator.copyPackageJsonAbsolutePath',
     async () => {
@@ -150,7 +168,7 @@ export function activate(context: vscode.ExtensionContext) {
     }
   );
 
-  // Copy package name of active file
+  // Copy package name
   const copyPackageName = vscode.commands.registerCommand('package-navigator.copyPackageName', async () => {
     const activeEditor = vscode.window.activeTextEditor;
     if (!activeEditor) {
@@ -177,6 +195,7 @@ export function activate(context: vscode.ExtensionContext) {
   context.subscriptions.push(
     openPackageJson,
     revealPackageJson,
+    revealPackageFolder,
     openPackageJsonInTerminal,
     copyPackageJsonRelativePath,
     copyPackageJsonAbsolutePath,

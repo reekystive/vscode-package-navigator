@@ -23,6 +23,10 @@
         "title": "Package Navigator: Reveal package.json in Explorer View"
       },
       {
+        "command": "package-navigator.revealPackageFolder",
+        "title": "Package Navigator: Reveal Package Folder in Explorer View"
+      },
+      {
         "command": "package-navigator.openPackageJsonInTerminal",
         "title": "Package Navigator: Open package.json in Integrated Terminal"
       },
@@ -60,6 +64,7 @@
     "@types/vscode": "^1.102.0",
     "@vscode/test-cli": "^0.0.11",
     "@vscode/test-electron": "^2.5.2",
+    "@vscode/vsce": "^3.6.0",
     "esbuild": "^0.25.3",
     "eslint": "^9.25.1",
     "eslint-config-prettier": "^10.1.5",
