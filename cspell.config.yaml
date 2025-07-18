@@ -1,4 +1,6 @@
 words:
+  - esbuild
+  - keytar
   - ovsx
 ignorePaths:
   - pnpm-lock.yaml

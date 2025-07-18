@@ -75,7 +75,6 @@ jobs:
             VERSION="${PACKAGE_VERSION}"
           else
             VERSION="0.0.0-dev+ci.sha.${COMMIT_HASH}.${TIMESTAMP}"
-            jq --arg version "$VERSION" '.version = $version' package.json > package.json.tmp && mv package.json.tmp package.json
           fi
           echo "version=${VERSION}" >> $GITHUB_OUTPUT
 
@@ -89,7 +88,7 @@ jobs:
           path: '*.vsix'
 
   publish-ovsx:
-    if: github.ref_type == 'tag' || github.ref_type == 'branch'
+    if: github.ref_type == 'tag'
     needs: build
     runs-on: ubuntu-latest
     name: Publish to Open VSX
@@ -123,7 +122,7 @@ jobs:
         run: ovsx publish --packagePath *.vsix --pat ${{ secrets.OVSX_TOKEN }}
 
   publish-vsce:
-    if: github.ref_type == 'tag' || github.ref_type == 'branch'
+    if: github.ref_type == 'tag'
     needs: build
     runs-on: ubuntu-latest
     name: Publish to VS Code Marketplace
