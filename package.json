@@ -15,8 +15,28 @@
   "contributes": {
     "commands": [
       {
-        "command": "package-navigator.helloWorld",
-        "title": "Hello World"
+        "command": "package-navigator.openPackageJson",
+        "title": "Package Navigator: Open package.json"
+      },
+      {
+        "command": "package-navigator.revealPackageJson",
+        "title": "Package Navigator: Reveal package.json in Explorer View"
+      },
+      {
+        "command": "package-navigator.openPackageJsonInTerminal",
+        "title": "Package Navigator: Open package.json in Integrated Terminal"
+      },
+      {
+        "command": "package-navigator.copyPackageJsonRelativePath",
+        "title": "Package Navigator: Copy Relative Path of package.json"
+      },
+      {
+        "command": "package-navigator.copyPackageJsonAbsolutePath",
+        "title": "Package Navigator: Copy Absolute Path of package.json"
+      },
+      {
+        "command": "package-navigator.copyPackageName",
+        "title": "Package Navigator: Copy Package Name"
       }
     ]
   },
