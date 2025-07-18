@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/), and this 
 
 ## [Unreleased]
 
+## [0.1.6] - 2025-07-19
+
 - Update dependencies
 
 ## [0.1.5] - 2025-07-19
