@@ -15,15 +15,15 @@ A VS Code extension that helps you quickly navigate to and manage `package.json`
 
 Access all commands through the Command Palette (`Ctrl+Shift+P` / `Cmd+Shift+P`):
 
-| Command | Description |
-|---------|-------------|
-| `Package Navigator: Open package.json` | Opens the nearest package.json file in the editor |
-| `Package Navigator: Reveal package.json in Explorer View` | Shows the package.json file in the VS Code Explorer |
-| `Package Navigator: Reveal Package Folder in Explorer View` | Shows the package folder in the VS Code Explorer |
-| `Package Navigator: Open package.json in Integrated Terminal` | Opens a terminal in the package directory |
-| `Package Navigator: Copy Relative Path of package.json` | Copies the relative path to clipboard |
-| `Package Navigator: Copy Absolute Path of package.json` | Copies the absolute path to clipboard |
-| `Package Navigator: Copy Package Name` | Copies the package name to clipboard |
+| Command                                    | Description                                         |
+| ------------------------------------------ | --------------------------------------------------- |
+| `Open package.json`                        | Opens the nearest package.json file in the editor   |
+| `Reveal package.json in Explorer View`     | Shows the package.json file in the VS Code Explorer |
+| `Reveal Package Folder in Explorer View`   | Shows the package folder in the VS Code Explorer    |
+| `Open package.json in Integrated Terminal` | Opens a terminal in the package directory           |
+| `Copy Relative Path of package.json`       | Copies the relative path to clipboard               |
+| `Copy Absolute Path of package.json`       | Copies the absolute path to clipboard               |
+| `Copy Package Name`                        | Copies the package name to clipboard                |
 
 ## How It Works 🔍
 
@@ -49,40 +49,9 @@ Package Navigator intelligently searches for `package.json` files by:
 3. Search for "Package Navigator"
 4. Click Install
 
-## Development 🛠️
-
-This extension is built with:
-- TypeScript
-- VS Code Extension API
-- ESBuild for bundling
-- PNPM for package management
-
-### Building from Source
-
-```bash
-# Clone the repository
-git clone <repository-url>
-cd package-navigator-esbuild
-
-# Install dependencies
-pnpm install
-
-# Compile the extension
-pnpm run compile
-
-# Package the extension
-pnpm run package
-```
-
-### Running Tests
-
-```bash
-pnpm run test
-```
-
 ## Contributing 🤝
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+Contributions are welcome! Please see our [Contributing Guide](CONTRIBUTING.md) for development setup, testing, and submission guidelines.
 
 ## License 📄
 
