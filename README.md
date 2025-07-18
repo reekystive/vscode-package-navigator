@@ -2,6 +2,9 @@
 
 A VS Code extension that helps you quickly navigate to and manage `package.json` files in your workspace. Perfect for developers working with monorepos, microservices, or any multi-package projects.
 
+- View this extension on [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=reekystive.package-navigator)
+- View this extension on [Open VSX](https://open-vsx.org/extension/reekystive/package-navigator)
+
 ## Features ✨
 
 - **Smart Package Detection**: Automatically finds the nearest `package.json` file for your current file
