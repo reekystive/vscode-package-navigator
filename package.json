@@ -1,7 +1,7 @@
 {
   "name": "package-navigator",
   "displayName": "Node.js Package Navigator",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Navigate to package.json instantly from any file in your monorepo",
   "categories": [
     "Other"

@@ -4,6 +4,10 @@ All notable changes to the Node.js Package Navigator extension will be documente
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/), and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [0.1.5] - 2025-07-19
+
+- Change output format to CommonJS to fix plugin loading issues in Cursor
+
 ## [0.1.4] - 2025-07-18
 
 - Updated extension description
