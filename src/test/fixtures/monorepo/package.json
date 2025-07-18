@@ -1,0 +1,9 @@
+{
+  "name": "monorepo-root",
+  "version": "1.0.0",
+  "description": "Monorepo root package",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ]
+}

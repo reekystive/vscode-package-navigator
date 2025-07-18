@@ -1,0 +1,6 @@
+{
+  "name": "@monorepo/utils",
+  "version": "1.0.0",
+  "description": "Utility functions package",
+  "main": "index.js"
+}

@@ -24,5 +24,6 @@
     "composite": true,
     "tsBuildInfoFile": "./node_modules/.cache/tsc-config/tsconfig.config.tsbuildinfo"
   },
-  "files": [".prettierrc.mjs", "eslint.config.mjs", ".vscode-test.mjs", "esbuild.mjs"]
+  "files": [".prettierrc.mjs", "eslint.config.mjs", ".vscode-test.mjs", "esbuild.mjs"],
+  "exclude": ["**/node_modules/", "**/fixtures/"]
 }

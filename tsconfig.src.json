@@ -23,5 +23,6 @@
     "composite": true,
     "tsBuildInfoFile": "./node_modules/.cache/tsc-src/tsconfig.src.tsbuildinfo"
   },
-  "include": ["src"]
+  "include": ["src"],
+  "exclude": ["**/node_modules/", "**/fixtures/"]
 }

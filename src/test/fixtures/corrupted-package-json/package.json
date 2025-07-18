@@ -1,0 +1,4 @@
+{
+  "name": "corrupted-project",
+  "version": "1.0.0"
+  // Missing closing bracket to make JSON invalid

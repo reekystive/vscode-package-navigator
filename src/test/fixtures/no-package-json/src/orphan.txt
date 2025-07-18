@@ -1,0 +1,1 @@
+File with no package.json in any parent directory
