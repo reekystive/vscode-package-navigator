@@ -13,17 +13,17 @@ A VS Code extension that helps you quickly navigate to and manage `package.json`
 
 ## Commands 🚀
 
-Access all commands through the Command Palette (`Ctrl+Shift+P` / `Cmd+Shift+P`):
+Access all commands through the Command Palette (Ctrl+Shift+P / Cmd+Shift+P):
 
 | Command                                    | Description                                         |
 | ------------------------------------------ | --------------------------------------------------- |
-| `Open package.json`                        | Opens the nearest package.json file in the editor   |
-| `Reveal package.json in Explorer View`     | Shows the package.json file in the VS Code Explorer |
-| `Reveal Package Folder in Explorer View`   | Shows the package folder in the VS Code Explorer    |
-| `Open package.json in Integrated Terminal` | Opens a terminal in the package directory           |
-| `Copy Relative Path of package.json`       | Copies the relative path to clipboard               |
-| `Copy Absolute Path of package.json`       | Copies the absolute path to clipboard               |
-| `Copy Package Name`                        | Copies the package name to clipboard                |
+| Open package.json                        | Opens the nearest package.json file in the editor   |
+| Reveal package.json in Explorer View     | Shows the package.json file in the VS Code Explorer |
+| Reveal Package Folder in Explorer View   | Shows the package folder in the VS Code Explorer    |
+| Open package.json in Integrated Terminal | Opens a terminal in the package directory           |
+| Copy Relative Path of package.json       | Copies the relative path to clipboard               |
+| Copy Absolute Path of package.json       | Copies the absolute path to clipboard               |
+| Copy Package Name                        | Copies the package name to clipboard                |
 
 ## How It Works 🔍
 
@@ -47,14 +47,14 @@ Node.js Package Navigator intelligently searches for `package.json` files by:
 ### Via VS Code Marketplace
 
 1. Open VS Code
-2. Go to Extensions (`Ctrl+Shift+X` / `Cmd+Shift+X`)
+2. Go to Extensions (Ctrl+Shift+X / Cmd+Shift+X)
 3. Search for "Node.js Package Navigator"
 4. Click Install
 
 ### Via Command Palette
 
 1. Open VS Code
-2. Press `Ctrl+P` / `Cmd+P` to open Command Palette
+2. Press Ctrl+P / Cmd+P to open Command Palette
 3. Type `ext install reekystive.package-navigator`
 4. Press Enter
 
