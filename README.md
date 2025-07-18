@@ -1,71 +1,93 @@
-# package-navigator README
+# Package Navigator 📦
 
-This is the README for your extension "package-navigator". After writing up a brief description, we recommend including the following sections.
+A VS Code extension that helps you quickly navigate to and manage `package.json` files in your workspace. Perfect for developers working with monorepos, microservices, or any multi-package projects.
 
-## Features
+## Features ✨
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+- **Smart Package Detection**: Automatically finds the nearest `package.json` file for your current file
+- **Quick Navigation**: Open package.json files instantly from any file in your project
+- **Explorer Integration**: Reveal package.json files or package folders in the VS Code Explorer
+- **Terminal Support**: Open an integrated terminal in the package directory
+- **Path Utilities**: Copy relative or absolute paths of package.json files
+- **Package Name Access**: Quickly copy package names to your clipboard
 
-For example if there is an image subfolder under your extension project workspace:
+## Commands 🚀
 
-\!\[feature X\]\(images/feature-x.png\)
+Access all commands through the Command Palette (`Ctrl+Shift+P` / `Cmd+Shift+P`):
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+| Command | Description |
+|---------|-------------|
+| `Package Navigator: Open package.json` | Opens the nearest package.json file in the editor |
+| `Package Navigator: Reveal package.json in Explorer View` | Shows the package.json file in the VS Code Explorer |
+| `Package Navigator: Reveal Package Folder in Explorer View` | Shows the package folder in the VS Code Explorer |
+| `Package Navigator: Open package.json in Integrated Terminal` | Opens a terminal in the package directory |
+| `Package Navigator: Copy Relative Path of package.json` | Copies the relative path to clipboard |
+| `Package Navigator: Copy Absolute Path of package.json` | Copies the absolute path to clipboard |
+| `Package Navigator: Copy Package Name` | Copies the package name to clipboard |
 
-## Requirements
+## How It Works 🔍
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+Package Navigator intelligently searches for `package.json` files by:
 
-## Extension Settings
+1. Starting from your currently active file
+2. Walking up the directory tree within your workspace
+3. Finding the nearest `package.json` file
+4. Respecting workspace boundaries to avoid conflicts
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
+## Use Cases 💡
 
-For example:
+- **Monorepo Navigation**: Quickly jump between different packages in your monorepo
+- **Dependency Management**: Fast access to package.json files for dependency updates
+- **Build Script Access**: Quickly open terminals in the right package directory
+- **Path References**: Copy package paths for documentation or configuration files
+- **Package Information**: Access package names for CLI commands or documentation
 
-This extension contributes the following settings:
+## Installation 📥
 
-- `myExtension.enable`: Enable/disable this extension.
-- `myExtension.thing`: Set to `blah` to do something.
+1. Open VS Code
+2. Go to Extensions (`Ctrl+Shift+X` / `Cmd+Shift+X`)
+3. Search for "Package Navigator"
+4. Click Install
 
-## Known Issues
+## Development 🛠️
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+This extension is built with:
+- TypeScript
+- VS Code Extension API
+- ESBuild for bundling
+- PNPM for package management
 
-## Release Notes
+### Building from Source
 
-Users appreciate release notes as you update your extension.
+```bash
+# Clone the repository
+git clone <repository-url>
+cd package-navigator-esbuild
 
-### 1.0.0
+# Install dependencies
+pnpm install
 
-Initial release of ...
+# Compile the extension
+pnpm run compile
 
-### 1.0.1
+# Package the extension
+pnpm run package
+```
 
-Fixed issue #.
+### Running Tests
 
-### 1.1.0
+```bash
+pnpm run test
+```
 
-Added features X, Y, and Z.
+## Contributing 🤝
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## License 📄
+
+This project is licensed under the MIT License - see the LICENSE file for details.
 
 ---
 
-## Following extension guidelines
-
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
-
-- [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
-
-## Working with Markdown
-
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
-
-- Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-- Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-- Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
-
-## For more information
-
-- [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-- [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+Made with ❤️ for developers who love efficient navigation!

@@ -4,24 +4,38 @@ import * as fs from 'node:fs/promises';
 import * as path from 'node:path';
 import * as vscode from 'vscode';
 
-async function findPackageJson(filePath: string): Promise<string | null> {
+export async function findPackageJson(filePath: string): Promise<string | null> {
+  const workspaceFolder = vscode.workspace.getWorkspaceFolder(vscode.Uri.file(filePath));
+
+  if (!workspaceFolder) {
+    // File is not in any workspace folder, return null
+    return null;
+  }
+
+  // Search within the workspace folder boundary
+  const workspaceRoot = workspaceFolder.uri.fsPath;
   let currentDir = path.dirname(filePath);
 
-  while (currentDir !== path.dirname(currentDir)) {
+  while (currentDir.startsWith(workspaceRoot)) {
     const packageJsonAbsolutePath = path.join(currentDir, 'package.json');
     try {
       await fs.access(packageJsonAbsolutePath);
       return packageJsonAbsolutePath;
     } catch {
-      // File doesn't exist, continue searching
+      // File doesn't exist, continue searching upward
     }
-    currentDir = path.dirname(currentDir);
+
+    const parentDir = path.dirname(currentDir);
+    if (parentDir === currentDir) {
+      break;
+    } // Reached root directory
+    currentDir = parentDir;
   }
 
   return null;
 }
 
-async function getPackageName(packageJsonAbsolutePath: string): Promise<string | null> {
+export async function getPackageName(packageJsonAbsolutePath: string): Promise<string | null> {
   try {
     const content = await fs.readFile(packageJsonAbsolutePath, 'utf8');
     const packageJson = JSON.parse(content) as { name?: string };
@@ -29,6 +43,22 @@ async function getPackageName(packageJsonAbsolutePath: string): Promise<string |
   } catch {
     return null;
   }
+}
+
+export function getDetailedErrorMessage(activeEditor: vscode.TextEditor | undefined): string {
+  if (!activeEditor) {
+    return 'Package Navigator: No active file is currently open. Please open a file to use package navigation features.';
+  }
+
+  const fileName = path.basename(activeEditor.document.fileName);
+  const workspaceFolder = vscode.workspace.getWorkspaceFolder(activeEditor.document.uri);
+
+  if (!workspaceFolder) {
+    return `Package Navigator: The file "${fileName}" is not part of any workspace folder. Please open the file within a workspace to locate its package.json.`;
+  }
+
+  const workspaceName = workspaceFolder.name;
+  return `Package Navigator: No package.json found for "${fileName}" in workspace "${workspaceName}". Make sure your project has a package.json file in the current directory or any parent directory within the workspace.`;
 }
 
 // This method is called when your extension is activated
@@ -42,13 +72,13 @@ export function activate(context: vscode.ExtensionContext) {
   const openPackageJson = vscode.commands.registerCommand('package-navigator.openPackageJson', async () => {
     const activeEditor = vscode.window.activeTextEditor;
     if (!activeEditor) {
-      vscode.window.showErrorMessage('No active file');
+      vscode.window.showErrorMessage(getDetailedErrorMessage(activeEditor));
       return;
     }
 
     const packageJsonAbsolutePath = await findPackageJson(activeEditor.document.fileName);
     if (!packageJsonAbsolutePath) {
-      vscode.window.showErrorMessage('No package.json found');
+      vscode.window.showErrorMessage(getDetailedErrorMessage(activeEditor));
       return;
     }
 
@@ -60,13 +90,13 @@ export function activate(context: vscode.ExtensionContext) {
   const revealPackageJson = vscode.commands.registerCommand('package-navigator.revealPackageJson', async () => {
     const activeEditor = vscode.window.activeTextEditor;
     if (!activeEditor) {
-      vscode.window.showErrorMessage('No active file');
+      vscode.window.showErrorMessage(getDetailedErrorMessage(activeEditor));
       return;
     }
 
     const packageJsonAbsolutePath = await findPackageJson(activeEditor.document.fileName);
     if (!packageJsonAbsolutePath) {
-      vscode.window.showErrorMessage('No package.json found');
+      vscode.window.showErrorMessage(getDetailedErrorMessage(activeEditor));
       return;
     }
 
@@ -77,13 +107,13 @@ export function activate(context: vscode.ExtensionContext) {
   const revealPackageFolder = vscode.commands.registerCommand('package-navigator.revealPackageFolder', async () => {
     const activeEditor = vscode.window.activeTextEditor;
     if (!activeEditor) {
-      vscode.window.showErrorMessage('No active file');
+      vscode.window.showErrorMessage(getDetailedErrorMessage(activeEditor));
       return;
     }
 
     const packageJsonAbsolutePath = await findPackageJson(activeEditor.document.fileName);
     if (!packageJsonAbsolutePath) {
-      vscode.window.showErrorMessage('No package.json found');
+      vscode.window.showErrorMessage(getDetailedErrorMessage(activeEditor));
       return;
     }
 
@@ -103,7 +133,7 @@ export function activate(context: vscode.ExtensionContext) {
 
       const packageJsonAbsolutePath = await findPackageJson(activeEditor.document.fileName);
       if (!packageJsonAbsolutePath) {
-        vscode.window.showErrorMessage('No package.json found');
+        vscode.window.showErrorMessage(getDetailedErrorMessage(activeEditor));
         return;
       }
 
@@ -131,13 +161,15 @@ export function activate(context: vscode.ExtensionContext) {
 
       const packageJsonAbsolutePath = await findPackageJson(activeEditor.document.fileName);
       if (!packageJsonAbsolutePath) {
-        vscode.window.showErrorMessage('No package.json found');
+        vscode.window.showErrorMessage(getDetailedErrorMessage(activeEditor));
         return;
       }
 
       const workspaceFolder = vscode.workspace.getWorkspaceFolder(vscode.Uri.file(packageJsonAbsolutePath));
       if (!workspaceFolder) {
-        vscode.window.showErrorMessage('No workspace folder found');
+        vscode.window.showErrorMessage(
+          'Package Navigator: Unable to determine workspace folder for the package.json file. This may indicate a workspace configuration issue.'
+        );
         return;
       }
 
@@ -159,7 +191,7 @@ export function activate(context: vscode.ExtensionContext) {
 
       const packageJsonAbsolutePath = await findPackageJson(activeEditor.document.fileName);
       if (!packageJsonAbsolutePath) {
-        vscode.window.showErrorMessage('No package.json found');
+        vscode.window.showErrorMessage(getDetailedErrorMessage(activeEditor));
         return;
       }
 
@@ -172,19 +204,23 @@ export function activate(context: vscode.ExtensionContext) {
   const copyPackageName = vscode.commands.registerCommand('package-navigator.copyPackageName', async () => {
     const activeEditor = vscode.window.activeTextEditor;
     if (!activeEditor) {
-      vscode.window.showErrorMessage('No active file');
+      vscode.window.showErrorMessage(getDetailedErrorMessage(activeEditor));
       return;
     }
 
     const packageJsonAbsolutePath = await findPackageJson(activeEditor.document.fileName);
     if (!packageJsonAbsolutePath) {
-      vscode.window.showErrorMessage('No package.json found');
+      vscode.window.showErrorMessage(getDetailedErrorMessage(activeEditor));
       return;
     }
 
     const packageName = await getPackageName(packageJsonAbsolutePath);
     if (!packageName) {
-      vscode.window.showErrorMessage('No package name found');
+      const fileName = path.basename(activeEditor.document.fileName);
+      const packageJsonName = path.basename(packageJsonAbsolutePath);
+      vscode.window.showErrorMessage(
+        `Package Navigator: No package name found in ${packageJsonName} for "${fileName}". The package.json file may be missing a "name" field or may be corrupted.`
+      );
       return;
     }
 
