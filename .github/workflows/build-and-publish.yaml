@@ -87,7 +87,7 @@ jobs:
           path: '*.vsix'
 
   publish-ovsx:
-    if: github.ref == 'refs/heads/main' && github.ref_type == 'tag'
+    if: github.ref_type == 'tag'
     needs: build
     runs-on: ubuntu-latest
     name: Publish to Open VSX
@@ -121,7 +121,7 @@ jobs:
         run: ovsx publish --packagePath *.vsix --pat ${{ secrets.OVSX_TOKEN }}
 
   publish-vsce:
-    if: github.ref == 'refs/heads/main' && github.ref_type == 'tag'
+    if: github.ref_type == 'tag'
     needs: build
     runs-on: ubuntu-latest
     name: Publish to VS Code Marketplace
