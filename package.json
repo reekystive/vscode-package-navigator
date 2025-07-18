@@ -3,6 +3,7 @@
   "displayName": "Package Navigator",
   "description": "",
   "version": "0.0.1",
+  "type": "module",
   "engines": {
     "vscode": "^1.102.0"
   },
@@ -21,30 +22,32 @@
   },
   "scripts": {
     "vscode:prepublish": "pnpm run package",
-    "compile": "pnpm run check-types && pnpm run lint && node esbuild.js",
-    "watch": "npm-run-all -p watch:*",
-    "watch:esbuild": "node esbuild.js --watch",
-    "watch:tsc": "tsc --noEmit --watch --project tsconfig.json",
-    "package": "pnpm run check-types && pnpm run lint && node esbuild.js --production",
-    "compile-tests": "tsc -p . --outDir out",
-    "watch-tests": "tsc -p . -w --outDir out",
+    "compile": "pnpm run check-types && pnpm run lint && node esbuild.mjs",
+    "watch": "pnpm run '/^watch:.*/'",
+    "watch:esbuild": "node esbuild.mjs --watch",
+    "watch:tsc": "tsc --build tsconfig.json --noEmit --watch --preserveWatchOutput",
+    "package": "pnpm run check-types && pnpm run lint && node esbuild.mjs --production",
+    "compile-tests": "tsc --build tsconfig.json",
+    "watch-tests": "tsc --build tsconfig.json --watch --preserveWatchOutput",
     "pretest": "pnpm run compile-tests && pnpm run compile && pnpm run lint",
-    "check-types": "tsc --noEmit",
+    "check-types": "tsc --build tsconfig.json --noEmit",
     "lint": "eslint src",
     "test": "vscode-test"
   },
   "devDependencies": {
-    "@types/vscode": "^1.102.0",
     "@types/mocha": "^10.0.10",
     "@types/node": "20.x",
-    "@typescript-eslint/eslint-plugin": "^8.31.1",
-    "@typescript-eslint/parser": "^8.31.1",
-    "eslint": "^9.25.1",
-    "esbuild": "^0.25.3",
-    "npm-run-all": "^4.1.5",
-    "typescript": "^5.8.3",
+    "@types/vscode": "^1.102.0",
     "@vscode/test-cli": "^0.0.11",
-    "@vscode/test-electron": "^2.5.2"
+    "@vscode/test-electron": "^2.5.2",
+    "esbuild": "^0.25.3",
+    "eslint": "^9.25.1",
+    "eslint-config-prettier": "^10.1.5",
+    "eslint-plugin-prettier": "^5.5.1",
+    "prettier": "^3.6.2",
+    "prettier-plugin-organize-imports": "^4.1.0",
+    "typescript": "^5.8.3",
+    "typescript-eslint": "^8.37.0"
   },
   "packageManager": "pnpm@10.13.1+sha512.37ebf1a5c7a30d5fabe0c5df44ee8da4c965ca0c5af3dbab28c3a1681b70a256218d05c81c9c0dcf767ef6b8551eb5b960042b9ed4300c59242336377e01cfad"
 }

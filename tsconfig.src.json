@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "compilerOptions": {
+    "module": "node16",
+    "target": "es2022",
+    "lib": ["ES2022"],
+    "types": ["node", "vscode", "mocha"],
+    "sourceMap": true,
+    "declaration": true,
+    "declarationMap": true,
+    "rootDir": "src",
+    "outDir": "out",
+    /* enable all strict type-checking options */
+    "strict": true,
+    /* Additional Checks */
+    /* Report error when not all code paths in function return a value. */
+    "noImplicitReturns": true,
+    /* Report errors for fallthrough cases in switch statement. */
+    "noFallthroughCasesInSwitch": true,
+    /* Report errors on unused parameters. */
+    "noUnusedParameters": true,
+    "useUnknownInCatchVariables": true,
+    "composite": true,
+    "tsBuildInfoFile": "./node_modules/.cache/tsc-src/tsconfig.src.tsbuildinfo"
+  },
+  "include": ["src"]
+}
