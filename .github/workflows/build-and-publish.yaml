@@ -91,8 +91,18 @@ jobs:
     name: Publish to Open VSX
 
     steps:
-      - name: Setup Node.js with corepack
-        uses: ./.github/actions/setup-node
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Enable corepack
+        shell: bash
+        run: corepack enable
+
+      - name: Prepare pnpm
+        shell: bash
+        run: corepack prepare pnpm@latest --activate
 
       - name: Setup cache
         uses: ./.github/actions/setup-cache
@@ -117,8 +127,18 @@ jobs:
     name: Publish to VS Code Marketplace
 
     steps:
-      - name: Setup Node.js with corepack
-        uses: ./.github/actions/setup-node
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Enable corepack
+        shell: bash
+        run: corepack enable
+
+      - name: Prepare pnpm
+        shell: bash
+        run: corepack prepare pnpm@latest --activate
 
       - name: Setup cache
         uses: ./.github/actions/setup-cache
