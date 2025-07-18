@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/), and this 
 
 ## [Unreleased]
 
+## [0.1.7] - 2025-07-19
+
+- Add GitHub Actions for building and publishing
+
 ## [0.1.6] - 2025-07-19
 
 - Update dependencies
