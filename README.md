@@ -15,8 +15,8 @@ A VS Code extension that helps you quickly navigate to and manage `package.json`
 
 Access all commands through the Command Palette (Ctrl+Shift+P / Cmd+Shift+P):
 
-| Command                                    | Description                                         |
-| ------------------------------------------ | --------------------------------------------------- |
+| Command                                  | Description                                         |
+| ---------------------------------------- | --------------------------------------------------- |
 | Open package.json                        | Opens the nearest package.json file in the editor   |
 | Reveal package.json in Explorer View     | Shows the package.json file in the VS Code Explorer |
 | Reveal Package Folder in Explorer View   | Shows the package folder in the VS Code Explorer    |
@@ -63,6 +63,23 @@ Node.js Package Navigator intelligently searches for `package.json` files by:
 ```bash
 code --install-extension reekystive.package-navigator
 ```
+
+## Keyboard Shortcuts ⌨️
+
+You can assign custom keyboard shortcuts to any of the commands through VS Code's built-in keyboard shortcuts settings:
+
+1. Open VS Code Command Palette (Ctrl+Shift+P / Cmd+Shift+P)
+2. Search for "Preferences: Open Keyboard Shortcuts"
+3. Search for "Node.js Package Navigator" to find all available commands
+4. Click on the command you want to assign a shortcut to
+5. Press your desired key combination
+6. Press Enter to save
+
+Alternatively, you can edit the `keybindings.json` file directly:
+
+- Open Command Palette (Ctrl+Shift+P / Cmd+Shift+P)
+- Type "Preferences: Open Keyboard Shortcuts (JSON)"
+- Add your custom keybindings using the command IDs from the extension
 
 ## Contributing 🤝
 
