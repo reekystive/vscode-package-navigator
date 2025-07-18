@@ -1,0 +1,129 @@
+# yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
+
+name: Build and Publish
+
+on:
+  push:
+    branches:
+      - '*'
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    name: Lint and typecheck
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js with corepack
+        uses: ./.github/actions/setup-node
+
+      - name: Setup cache
+        uses: ./.github/actions/setup-cache
+        with:
+          restore-key-prefix: 'lint-cache'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Run typecheck
+        run: pnpm run check-types
+
+      - name: Run linting
+        run: pnpm run lint
+
+  build:
+    runs-on: ubuntu-latest
+    name: Build extension
+    needs: lint
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js with corepack
+        uses: ./.github/actions/setup-node
+
+      - name: Setup cache
+        uses: ./.github/actions/setup-cache
+        with:
+          restore-key-prefix: 'build-cache'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build extension
+        run: pnpm run package
+
+      - name: Set version for packaging
+        id: version
+        run: |
+          COMMIT_HASH=$(git rev-parse --short=7 HEAD)
+          if [[ "${{ github.ref }}" == "refs/heads/main" ]]; then
+            PACKAGE_VERSION=$(jq -r '.version' package.json)
+          else
+            PACKAGE_VERSION="0.0.0"
+          fi
+          VERSION="${PACKAGE_VERSION}-${COMMIT_HASH}"
+          echo "version=${VERSION}" >> $GITHUB_OUTPUT
+
+      - name: Package extension
+        run: pnpm vsce package --no-dependencies --pre-release --out "package-navigator-${{ steps.version.outputs.version }}.vsix"
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: vscode-extension
+          path: '*.vsix'
+
+  publish-ovsx:
+    if: github.ref == 'refs/heads/main'
+    needs: build
+    runs-on: ubuntu-latest
+    name: Publish to Open VSX
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js with corepack
+        uses: ./.github/actions/setup-node
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: vscode-extension
+
+      - name: Publish to Open VSX
+        run: pnpm ovsx publish *.vsix --pat ${{ secrets.OVSX_TOKEN }}
+
+  publish-vsce:
+    if: github.ref == 'refs/heads/main'
+    needs: build
+    runs-on: ubuntu-latest
+    name: Publish to VS Code Marketplace
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js with corepack
+        uses: ./.github/actions/setup-node
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: vscode-extension
+
+      - name: Publish to VS Code Marketplace
+        run: pnpm vsce publish --packagePath *.vsix --pat ${{ secrets.VSCE_TOKEN }}

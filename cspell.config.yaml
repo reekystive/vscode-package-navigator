@@ -1,0 +1,5 @@
+words:
+  - ovsx
+ignorePaths:
+  - pnpm-lock.yaml
+  - cspell.config.yaml
