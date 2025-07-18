@@ -1,4 +1,4 @@
-# Package Navigator 📦
+# Node.js Package Navigator 📦
 
 A VS Code extension that helps you quickly navigate to and manage `package.json` files in your workspace. Perfect for developers working with monorepos, microservices, or any multi-package projects.
 
@@ -27,7 +27,7 @@ Access all commands through the Command Palette (`Ctrl+Shift+P` / `Cmd+Shift+P`)
 
 ## How It Works 🔍
 
-Package Navigator intelligently searches for `package.json` files by:
+Node.js Package Navigator intelligently searches for `package.json` files by:
 
 1. Starting from your currently active file
 2. Walking up the directory tree within your workspace
@@ -44,10 +44,25 @@ Package Navigator intelligently searches for `package.json` files by:
 
 ## Installation 📥
 
+### Via VS Code Marketplace
+
 1. Open VS Code
 2. Go to Extensions (`Ctrl+Shift+X` / `Cmd+Shift+X`)
-3. Search for "Package Navigator"
+3. Search for "Node.js Package Navigator"
 4. Click Install
+
+### Via Command Palette
+
+1. Open VS Code
+2. Press `Ctrl+P` / `Cmd+P` to open Command Palette
+3. Type `ext install reekystive.package-navigator`
+4. Press Enter
+
+### Via VSCode CLI
+
+```bash
+code --install-extension reekystive.package-navigator
+```
 
 ## Contributing 🤝
 

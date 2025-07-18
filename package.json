@@ -1,6 +1,6 @@
 {
   "name": "package-navigator",
-  "displayName": "Package Navigator",
+  "displayName": "Node.js Package Navigator",
   "version": "0.0.1",
   "description": "",
   "categories": [
@@ -36,31 +36,31 @@
     "commands": [
       {
         "command": "package-navigator.openPackageJson",
-        "title": "Package Navigator: Open package.json"
+        "title": "Node.js Package Navigator: Open package.json"
       },
       {
         "command": "package-navigator.revealPackageJson",
-        "title": "Package Navigator: Reveal package.json in Explorer View"
+        "title": "Node.js Package Navigator: Reveal package.json in Explorer View"
       },
       {
         "command": "package-navigator.revealPackageFolder",
-        "title": "Package Navigator: Reveal Package Folder in Explorer View"
+        "title": "Node.js Package Navigator: Reveal Package Folder in Explorer View"
       },
       {
         "command": "package-navigator.openPackageJsonInTerminal",
-        "title": "Package Navigator: Open package.json in Integrated Terminal"
+        "title": "Node.js Package Navigator: Open package.json in Integrated Terminal"
       },
       {
         "command": "package-navigator.copyPackageJsonRelativePath",
-        "title": "Package Navigator: Copy Relative Path of package.json"
+        "title": "Node.js Package Navigator: Copy Relative Path of package.json"
       },
       {
         "command": "package-navigator.copyPackageJsonAbsolutePath",
-        "title": "Package Navigator: Copy Absolute Path of package.json"
+        "title": "Node.js Package Navigator: Copy Absolute Path of package.json"
       },
       {
         "command": "package-navigator.copyPackageName",
-        "title": "Package Navigator: Copy Package Name"
+        "title": "Node.js Package Navigator: Copy Package Name"
       }
     ]
   },

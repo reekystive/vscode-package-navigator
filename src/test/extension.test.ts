@@ -29,8 +29,8 @@ function createMockWorkspaceFolder(name: string, uri: vscode.Uri): vscode.Worksp
   };
 }
 
-suite('Package Navigator Extension Test Suite', () => {
-  vscode.window.showInformationMessage('Starting Package Navigator tests...');
+suite('Node.js Package Navigator Extension Test Suite', () => {
+  vscode.window.showInformationMessage('Starting Node.js Package Navigator tests...');
 
   suite('findPackageJson Function', () => {
     test('should find package.json in simple project', async () => {
@@ -187,7 +187,7 @@ suite('Package Navigator Extension Test Suite', () => {
       const result = getDetailedErrorMessage(undefined);
       assert.strictEqual(
         result,
-        'Package Navigator: No active file is currently open. Please open a file to use package navigation features.'
+        'Node.js Package Navigator: No active file is currently open. Please open a file to use package navigation features.'
       );
     });
 
@@ -202,7 +202,7 @@ suite('Package Navigator Extension Test Suite', () => {
         const result = getDetailedErrorMessage(mockEditor);
         assert.strictEqual(
           result,
-          'Package Navigator: The file "orphan.txt" is not part of any workspace folder. Please open the file within a workspace to locate its package.json.'
+          'Node.js Package Navigator: The file "orphan.txt" is not part of any workspace folder. Please open the file within a workspace to locate its package.json.'
         );
       } finally {
         vscode.workspace.getWorkspaceFolder = originalGetWorkspaceFolder;
@@ -221,7 +221,7 @@ suite('Package Navigator Extension Test Suite', () => {
         const result = getDetailedErrorMessage(mockEditor);
         assert.strictEqual(
           result,
-          'Package Navigator: No package.json found for "orphan.txt" in workspace "no-package-json". Make sure your project has a package.json file in the current directory or any parent directory within the workspace.'
+          'Node.js Package Navigator: No package.json found for "orphan.txt" in workspace "no-package-json". Make sure your project has a package.json file in the current directory or any parent directory within the workspace.'
         );
       } finally {
         vscode.workspace.getWorkspaceFolder = originalGetWorkspaceFolder;
@@ -240,7 +240,7 @@ suite('Package Navigator Extension Test Suite', () => {
         const result = getDetailedErrorMessage(mockEditor);
         assert.strictEqual(
           result,
-          'Package Navigator: No package.json found for "component.txt" in workspace "simple-project". Make sure your project has a package.json file in the current directory or any parent directory within the workspace.'
+          'Node.js Package Navigator: No package.json found for "component.txt" in workspace "simple-project". Make sure your project has a package.json file in the current directory or any parent directory within the workspace.'
         );
       } finally {
         vscode.workspace.getWorkspaceFolder = originalGetWorkspaceFolder;

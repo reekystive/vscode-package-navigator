@@ -1,6 +1,6 @@
-# Contributing to Package Navigator 🤝
+# Contributing to Node.js Package Navigator 🤝
 
-Thank you for your interest in contributing to Package Navigator! This document provides guidelines and information for contributors.
+Thank you for your interest in contributing to Node.js Package Navigator! This document provides guidelines and information for contributors.
 
 ## Development Setup 🛠️
 

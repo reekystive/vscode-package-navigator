@@ -47,18 +47,18 @@ export async function getPackageName(packageJsonAbsolutePath: string): Promise<s
 
 export function getDetailedErrorMessage(activeEditor: vscode.TextEditor | undefined): string {
   if (!activeEditor) {
-    return 'Package Navigator: No active file is currently open. Please open a file to use package navigation features.';
+    return 'Node.js Package Navigator: No active file is currently open. Please open a file to use package navigation features.';
   }
 
   const fileName = path.basename(activeEditor.document.fileName);
   const workspaceFolder = vscode.workspace.getWorkspaceFolder(activeEditor.document.uri);
 
   if (!workspaceFolder) {
-    return `Package Navigator: The file "${fileName}" is not part of any workspace folder. Please open the file within a workspace to locate its package.json.`;
+    return `Node.js Package Navigator: The file "${fileName}" is not part of any workspace folder. Please open the file within a workspace to locate its package.json.`;
   }
 
   const workspaceName = workspaceFolder.name;
-  return `Package Navigator: No package.json found for "${fileName}" in workspace "${workspaceName}". Make sure your project has a package.json file in the current directory or any parent directory within the workspace.`;
+  return `Node.js Package Navigator: No package.json found for "${fileName}" in workspace "${workspaceName}". Make sure your project has a package.json file in the current directory or any parent directory within the workspace.`;
 }
 
 // This method is called when your extension is activated
@@ -138,7 +138,7 @@ export function activate(context: vscode.ExtensionContext) {
       }
 
       const packageName = await getPackageName(packageJsonAbsolutePath);
-      const terminalName = packageName || 'Package Navigator';
+      const terminalName = packageName || 'Node.js Package Navigator';
       const packageDir = path.dirname(packageJsonAbsolutePath);
 
       const terminal = vscode.window.createTerminal({
@@ -168,7 +168,7 @@ export function activate(context: vscode.ExtensionContext) {
       const workspaceFolder = vscode.workspace.getWorkspaceFolder(vscode.Uri.file(packageJsonAbsolutePath));
       if (!workspaceFolder) {
         vscode.window.showErrorMessage(
-          'Package Navigator: Unable to determine workspace folder for the package.json file. This may indicate a workspace configuration issue.'
+          'Node.js Package Navigator: Unable to determine workspace folder for the package.json file. This may indicate a workspace configuration issue.'
         );
         return;
       }
@@ -219,7 +219,7 @@ export function activate(context: vscode.ExtensionContext) {
       const fileName = path.basename(activeEditor.document.fileName);
       const packageJsonName = path.basename(packageJsonAbsolutePath);
       vscode.window.showErrorMessage(
-        `Package Navigator: No package name found in ${packageJsonName} for "${fileName}". The package.json file may be missing a "name" field or may be corrupted.`
+        `Node.js Package Navigator: No package name found in ${packageJsonName} for "${fileName}". The package.json file may be missing a "name" field or may be corrupted.`
       );
       return;
     }
