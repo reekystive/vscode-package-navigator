@@ -116,7 +116,7 @@ jobs:
           name: vscode-extension
 
       - name: Publish to Open VSX
-        run: pnpm exec ovsx publish --packagePath *.vsix --pat ${{ secrets.OVSX_TOKEN }}
+        run: ovsx publish --packagePath *.vsix --pat ${{ secrets.OVSX_TOKEN }}
 
   publish-vsce:
     if: github.ref == 'refs/heads/main'
@@ -150,4 +150,4 @@ jobs:
           name: vscode-extension
 
       - name: Publish to VS Code Marketplace
-        run: pnpm exec vsce publish --packagePath *.vsix --pat ${{ secrets.VSCE_TOKEN }}
+        run: vsce publish --packagePath *.vsix --pat ${{ secrets.VSCE_TOKEN }}
