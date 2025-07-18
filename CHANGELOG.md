@@ -4,9 +4,13 @@ All notable changes to the Node.js Package Navigator extension will be documente
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/), and this project adheres to [Semantic Versioning](https://semver.org/).
 
-## [0.1.0] - 2025-01-18
+## [0.1.1] - 2025-07-18
 
-### Added
+- Added extension icon
+
+## [0.1.0] - 2025-07-18
+
+Added:
 
 - **Smart Package Detection**: Automatically finds the nearest `package.json` file for your current file
 - **Quick Navigation**: Open package.json files instantly from any file in your project
@@ -16,17 +20,17 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/), and this 
 - **Package Name Access**: Quickly copy package names to your clipboard
 - **Workspace Boundary Respect**: Searches within workspace boundaries to avoid conflicts
 
-### Commands
+Commands:
 
-- `Open package.json`
-- `Reveal package.json in Explorer View`
-- `Reveal Package Folder in Explorer View`
-- `Open package.json in Integrated Terminal`
-- `Copy Relative Path of package.json`
-- `Copy Absolute Path of package.json`
-- `Copy Package Name`
+- Open package.json
+- Reveal package.json in Explorer View
+- Reveal Package Folder in Explorer View
+- Open package.json in Integrated Terminal
+- Copy Relative Path of package.json
+- Copy Absolute Path of package.json
+- Copy Package Name
 
-### Technical Details
+Technical Details:
 
 - Built with TypeScript and VS Code Extension API
 - Uses ESBuild for efficient bundling

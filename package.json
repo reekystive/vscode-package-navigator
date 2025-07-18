@@ -1,7 +1,7 @@
 {
   "name": "package-navigator",
   "displayName": "Node.js Package Navigator",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "",
   "categories": [
     "Other"
@@ -85,5 +85,6 @@
   "engines": {
     "node": ">=22.15.0",
     "vscode": "^1.99.0"
-  }
+  },
+  "icon": "images/icon.jpeg"
 }
