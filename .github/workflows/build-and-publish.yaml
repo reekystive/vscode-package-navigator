@@ -104,11 +104,6 @@ jobs:
         shell: bash
         run: corepack prepare pnpm@latest --activate
 
-      - name: Setup cache
-        uses: ./.github/actions/setup-cache
-        with:
-          restore-key-prefix: 'ovsx-cache'
-
       - name: Install ovsx CLI
         run: pnpm add -g ovsx --dangerously-allow-all-builds
 
@@ -139,11 +134,6 @@ jobs:
       - name: Prepare pnpm
         shell: bash
         run: corepack prepare pnpm@latest --activate
-
-      - name: Setup cache
-        uses: ./.github/actions/setup-cache
-        with:
-          restore-key-prefix: 'vsce-cache'
 
       - name: Install vsce CLI
         run: pnpm add -g vsce --dangerously-allow-all-builds
