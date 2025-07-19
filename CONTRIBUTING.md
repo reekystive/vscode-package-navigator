@@ -2,6 +2,12 @@
 
 Thank you for your interest in contributing to Node.js Package Navigator! This document provides guidelines and information for contributors.
 
+This extension supports all VS Code environments:
+
+- Local
+- Remote (SSH/WSL/Dev Containers)
+- Web (github.dev, vscode.dev)
+
 ## Development Setup 🛠️
 
 This extension is built with:
@@ -115,22 +121,42 @@ pnpm run watch-tests
 
 ```plaintext
 ├── src/
-│   ├── extension.ts          # Main extension code
-│   └── test/
-│       └── extension.test.ts # Tests
-├── dist/                     # Compiled extension
-├── out/                      # TypeScript output
-├── package.json             # Extension manifest
-├── tsconfig.json           # TypeScript configuration
-├── esbuild.mjs             # ESBuild configuration
-└── eslint.config.mjs       # ESLint configuration
+│   ├── extension.ts         # Main extension entry point
+│   ├── logger.ts           # Logging functionality
+│   ├── commands.ts         # Command implementations
+│   ├── package-finder.ts   # Core package.json search logic
+│   ├── error-messages.ts   # Error message handling
+│   └── test/               # Test files
+│       ├── helpers.ts                  # Test utilities
+│       ├── extension.test.ts           # Main test suite
+│       ├── package-finder.test.ts      # Package finder tests
+│       ├── error-messages.test.ts      # Error message tests
+│       ├── integration.test.ts         # Integration tests
+│       └── performance.test.ts         # Performance tests
+├── dist/                   # Compiled extension bundles
+├── out/                    # TypeScript output
+├── package.json           # Extension manifest
+├── tsconfig.json         # TypeScript configuration
+├── esbuild.mjs           # ESBuild configuration (dual build)
+└── eslint.config.mjs     # ESLint configuration
 ```
+
+### Architecture & Cross-Platform Support
+
+The extension is designed with modularity and cross-platform compatibility in mind:
+
+- **Modular Architecture**: Code is split into focused modules for maintainability
+- **VS Code API Only**: Uses only VS Code APIs, no Node.js dependencies for file operations
+- **Virtual Workspace Support**: Compatible with virtual file systems and remote workspaces
+- **Dual Build System**: Generates both Node.js and Web bundles from the same source
+- **URI-based Operations**: All file operations use VS Code URIs for cross-platform compatibility
 
 ### Key Functions
 
-- `findPackageJson()`: Searches for the nearest package.json file
-- `getPackageName()`: Extracts package name from package.json
-- `getDetailedErrorMessage()`: Provides user-friendly error messages
+- `findPackageJson()` in `package-finder.ts`: Searches for the nearest package.json file
+- `getPackageName()` in `package-finder.ts`: Extracts package name from package.json
+- `getDetailedErrorMessage()` in `error-messages.ts`: Provides user-friendly error messages
+- `registerCommands()` in `commands.ts`: Registers all extension commands
 
 ### Submitting Changes
 

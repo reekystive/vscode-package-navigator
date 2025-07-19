@@ -2,8 +2,13 @@
 
 A VS Code extension that helps you quickly navigate to and manage `package.json` files in your workspace. Perfect for developers working with monorepos, microservices, or any multi-package projects.
 
-- View this extension on [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=reekystive.package-navigator)
-- View this extension on [Open VSX](https://open-vsx.org/extension/reekystive/package-navigator)
+Supports all VS Code environments:
+
+- Local
+- Remote (SSH/WSL/Dev Containers)
+- Web (github.dev, vscode.dev)
+
+View this extension on [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=reekystive.package-navigator) or [Open VSX](https://open-vsx.org/extension/reekystive/package-navigator).
 
 ## Features ✨
 
@@ -13,6 +18,8 @@ A VS Code extension that helps you quickly navigate to and manage `package.json`
 - **Terminal Support**: Open an integrated terminal in the package directory
 - **Path Utilities**: Copy relative or absolute paths of package.json files
 - **Package Name Access**: Quickly copy package names to your clipboard
+- **Cross-Platform Compatibility**: Works seamlessly in Desktop, Remote, and Web environments
+- **Virtual Workspace Support**: Compatible with virtual file systems and remote workspaces
 
 ## Commands 🚀
 
