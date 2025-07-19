@@ -18,19 +18,23 @@
   "publisher": "reekystive",
   "type": "module",
   "main": "./dist/extension.cjs",
+  "browser": "./dist/extension.web.cjs",
   "scripts": {
+    "lint": "eslint src",
     "check-types": "tsc --build tsconfig.json --noEmit",
     "compile": "pnpm run check-types && pnpm run lint && node esbuild.mjs",
     "compile-tests": "tsc --build tsconfig.json",
-    "lint": "eslint src",
-    "package": "pnpm run check-types && pnpm run lint && node esbuild.mjs --production",
+    "watch-tests": "tsc --build tsconfig.json --watch --preserveWatchOutput",
     "pretest": "pnpm run compile-tests && pnpm run compile && pnpm run lint",
     "test": "vscode-test",
-    "vscode:prepublish": "pnpm run package",
     "watch": "pnpm run '/^watch:.*/'",
-    "watch-tests": "tsc --build tsconfig.json --watch --preserveWatchOutput",
     "watch:esbuild": "node esbuild.mjs --watch",
-    "watch:tsc": "tsc --build tsconfig.json --noEmit --watch --preserveWatchOutput"
+    "watch:tsc": "tsc --build tsconfig.json --noEmit --watch --preserveWatchOutput",
+    "package": "pnpm run check-types && pnpm run lint && node esbuild.mjs --production",
+    "vscode:prepublish": "pnpm run package",
+    "run-extension": "code --extensionDevelopmentPath=. --disable-extensions",
+    "run-web-extension": "code --extensionDevelopmentPath=. --extensionDevelopmentKind=web --disable-extensions",
+    "open-in-browser": "vscode-test-web --extensionDevelopmentPath=. ."
   },
   "contributes": {
     "commands": [
@@ -65,18 +69,27 @@
     ]
   },
   "activationEvents": [],
+  "extensionKind": [
+    "workspace",
+    "ui"
+  ],
+  "capabilities": {
+    "virtualWorkspaces": true
+  },
   "devDependencies": {
     "@types/mocha": "^10.0.10",
     "@types/node": "^22.15.0",
     "@types/vscode": "^1.99.0",
     "@vscode/test-cli": "^0.0.11",
     "@vscode/test-electron": "^2.5.2",
+    "@vscode/test-web": "^0.0.71",
     "@vscode/vsce": "^3.6.0",
     "esbuild": "^0.25.3",
     "eslint": "^9.25.1",
     "eslint-config-prettier": "^10.1.7",
     "eslint-plugin-prettier": "^5.5.1",
     "ovsx": "^0.10.5",
+    "playwright": "^1.54.1",
     "prettier": "^3.6.2",
     "prettier-plugin-organize-imports": "^4.1.0",
     "typescript": "^5.8.3",
@@ -88,5 +101,8 @@
     "pnpm": "10.13.1",
     "vscode": "^1.99.0"
   },
-  "icon": "images/icon.jpeg"
+  "icon": "images/icon.jpeg",
+  "dependencies": {
+    "vscode-uri": "^3.1.0"
+  }
 }

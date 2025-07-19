@@ -41,13 +41,13 @@
     {
       "type": "npm",
       "script": "watch-tests",
+      "group": "build",
       "problemMatcher": "$tsc-watch",
       "isBackground": true,
       "presentation": {
         "reveal": "never",
         "group": "watchers"
-      },
-      "group": "build"
+      }
     },
     {
       "label": "tasks: watch-tests",

@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/), and this 
 
 ## [Unreleased]
 
+- Refactor code to support virtual workspaces
+- Add support for web extensions
+- Remove Node.js specific dependencies
+
 ## [0.1.10] - 2025-07-19
 
 - Updated CONTRIBUTING.md

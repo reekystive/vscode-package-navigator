@@ -24,7 +24,8 @@ const esbuildProblemMatcherPlugin = {
 };
 
 async function main() {
-  const ctx = await esbuild.context({
+  // Build for Node.js (desktop)
+  const nodeCtx = await esbuild.context({
     entryPoints: ['src/extension.ts'],
     bundle: true,
     format: 'cjs',
@@ -35,16 +36,29 @@ async function main() {
     outfile: 'dist/extension.cjs',
     external: ['vscode'],
     logLevel: 'silent',
-    plugins: [
-      /* add to the end of plugins array */
-      esbuildProblemMatcherPlugin,
-    ],
+    plugins: [esbuildProblemMatcherPlugin],
   });
+
+  // Build for Web (browser)
+  const webCtx = await esbuild.context({
+    entryPoints: ['src/extension.ts'],
+    bundle: true,
+    format: 'cjs',
+    minify: production,
+    sourcemap: !production,
+    sourcesContent: false,
+    platform: 'browser',
+    outfile: 'dist/extension.web.cjs',
+    external: ['vscode'],
+    logLevel: 'silent',
+    plugins: [esbuildProblemMatcherPlugin],
+  });
+
   if (watch) {
-    await ctx.watch();
+    await Promise.all([nodeCtx.watch(), webCtx.watch()]);
   } else {
-    await ctx.rebuild();
-    await ctx.dispose();
+    await Promise.all([nodeCtx.rebuild(), webCtx.rebuild()]);
+    await Promise.all([nodeCtx.dispose(), webCtx.dispose()]);
   }
 }
 
