@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/), and this 
 
 ## [Unreleased]
 
+## [0.2.0] - 2025-07-19
+
 - Refactor code to support virtual workspaces
 - Add support for web extensions
 - Add support for remote development environments
