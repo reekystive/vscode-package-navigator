@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/), and this 
 
 ## [Unreleased]
 
+## [0.2.2] - 2025-07-19
+
 - Add keywords to package.json for better discoverability
 
 ## [0.2.1] - 2025-07-19
