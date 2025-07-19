@@ -78,8 +78,13 @@ jobs:
           fi
           echo "version=${VERSION}" >> $GITHUB_OUTPUT
 
-      - name: Package extension
+      - name: Package extension (Pre-release)
+        if: github.ref_type != 'tag'
         run: pnpm vsce package --no-dependencies --pre-release --out "package-navigator-${{ steps.version.outputs.version }}.vsix"
+
+      - name: Package extension (Release)
+        if: github.ref_type == 'tag'
+        run: pnpm vsce package --no-dependencies --out "package-navigator-${{ steps.version.outputs.version }}.vsix"
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
