@@ -16,3 +16,5 @@ pnpm-workspace.yaml
 tsconfig.json
 tsconfig.*.json
 .claude/**
+.cursor/**
+cspell.config.yaml

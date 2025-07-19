@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/), and this 
 
 ## [Unreleased]
 
+- Clean up unused files in the extension bundle
+
 ## [0.2.0] - 2025-07-19
 
 - Refactor code to support virtual workspaces
