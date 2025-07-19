@@ -3,6 +3,7 @@ words:
   - dbaeumer
   - esbuild
   - keytar
+  - Mingxuan
   - ovsx
 ignorePaths:
   - pnpm-lock.yaml
