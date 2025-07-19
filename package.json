@@ -6,6 +6,18 @@
   "categories": [
     "Other"
   ],
+  "keywords": [
+    "node.js",
+    "package.json",
+    "reveal",
+    "explorer",
+    "terminal",
+    "monorepo",
+    "copy",
+    "path",
+    "utilities",
+    "navigation"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/reekystive/vscode-package-navigator"
@@ -20,21 +32,21 @@
   "main": "./dist/extension.cjs",
   "browser": "./dist/extension.web.cjs",
   "scripts": {
-    "lint": "eslint src",
     "check-types": "tsc --build tsconfig.json --noEmit",
     "compile": "pnpm run check-types && pnpm run lint && node esbuild.mjs",
     "compile-tests": "tsc --build tsconfig.json",
-    "watch-tests": "tsc --build tsconfig.json --watch --preserveWatchOutput",
-    "pretest": "pnpm run compile-tests && pnpm run compile && pnpm run lint",
-    "test": "vscode-test",
-    "watch": "pnpm run '/^watch:.*/'",
-    "watch:esbuild": "node esbuild.mjs --watch",
-    "watch:tsc": "tsc --build tsconfig.json --noEmit --watch --preserveWatchOutput",
+    "lint": "eslint src",
+    "open-in-browser": "vscode-test-web --extensionDevelopmentPath=. .",
     "package": "pnpm run check-types && pnpm run lint && node esbuild.mjs --production",
-    "vscode:prepublish": "pnpm run package",
     "run-extension": "code --extensionDevelopmentPath=. --disable-extensions",
     "run-web-extension": "code --extensionDevelopmentPath=. --extensionDevelopmentKind=web --disable-extensions",
-    "open-in-browser": "vscode-test-web --extensionDevelopmentPath=. ."
+    "pretest": "pnpm run compile-tests && pnpm run compile && pnpm run lint",
+    "test": "vscode-test",
+    "vscode:prepublish": "pnpm run package",
+    "watch": "pnpm run '/^watch:.*/'",
+    "watch-tests": "tsc --build tsconfig.json --watch --preserveWatchOutput",
+    "watch:esbuild": "node esbuild.mjs --watch",
+    "watch:tsc": "tsc --build tsconfig.json --noEmit --watch --preserveWatchOutput"
   },
   "contributes": {
     "commands": [
@@ -69,12 +81,8 @@
     ]
   },
   "activationEvents": [],
-  "extensionKind": [
-    "workspace",
-    "ui"
-  ],
-  "capabilities": {
-    "virtualWorkspaces": true
+  "dependencies": {
+    "vscode-uri": "^3.1.0"
   },
   "devDependencies": {
     "@types/mocha": "^10.0.10",
@@ -102,7 +110,11 @@
     "vscode": "^1.99.0"
   },
   "icon": "images/icon.jpeg",
-  "dependencies": {
-    "vscode-uri": "^3.1.0"
-  }
+  "capabilities": {
+    "virtualWorkspaces": true
+  },
+  "extensionKind": [
+    "workspace",
+    "ui"
+  ]
 }
