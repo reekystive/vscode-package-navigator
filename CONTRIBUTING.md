@@ -17,6 +17,14 @@ This extension is built with:
 - PNPM 10.13.1+
 - VS Code
 
+### Recommended Extensions
+
+Install these recommended VS Code extensions for the best development experience:
+
+- `amodio.tsl-problem-matcher` - TypeScript problem matcher
+- `ms-vscode.extension-test-runner` - Extension Test Runner
+- `dbaeumer.vscode-eslint` - ESLint integration
+
 ### Building from Source
 
 ```bash
@@ -75,10 +83,25 @@ pnpm run watch-tests
 
 ### Testing Your Changes
 
+#### Development Debugging
+
 1. Press `F5` in VS Code to launch a new Extension Development Host window
 2. In the new window, open a project with package.json files
-3. Test the extension commands through the Command Palette
-4. Verify all functionality works as expected
+3. Test the extension commands through the Command Palette (`Ctrl+Shift+P` or `Cmd+Shift+P` on Mac)
+4. Set breakpoints in your code inside `src/extension.ts` to debug your extension
+5. Find output from your extension in the debug console
+6. You can relaunch the extension from the debug toolbar after changing code
+7. You can also reload (`Ctrl+R` or `Cmd+R` on Mac) the VS Code window to load your changes
+
+#### Running Automated Tests
+
+- Install the [Extension Test Runner](https://marketplace.visualstudio.com/items?itemName=ms-vscode.extension-test-runner)
+- Run the "watch" task via the **Tasks: Run Task** command. Make sure this is running, or tests might not be discovered
+- Open the Testing view from the activity bar and click the "Run Test" button, or use the hotkey `Ctrl/Cmd + ; A`
+- See the output of the test result in the Test Results view
+- Make changes to `src/test/extension.test.ts` or create new test files inside the `test` folder
+- The provided test runner will only consider files matching the name pattern `**.test.ts`
+- You can create folders inside the `test` folder to structure your tests any way you want
 
 ### Code Style
 
@@ -131,6 +154,13 @@ When reporting issues, please include:
 
 - Check existing issues and discussions
 - Review the VS Code Extension API documentation
+- Open the full set of VS Code API by viewing `node_modules/@types/vscode/index.d.ts`
 - Ask questions in the issue tracker
+
+### Additional Resources
+
+- [Bundle your extension](https://code.visualstudio.com/api/working-with-extensions/bundling-extension) to reduce size and improve startup time
+- [Publish your extension](https://code.visualstudio.com/api/working-with-extensions/publishing-extension) on the VS Code marketplace
+- [Set up Continuous Integration](https://code.visualstudio.com/api/working-with-extensions/continuous-integration) for automated builds
 
 Thank you for contributing! 🎉
