@@ -8,7 +8,6 @@
   ],
   "keywords": [
     "node",
-    "nodejs",
     "node.js",
     "package",
     "package.json",
@@ -17,7 +16,11 @@
     "explorer",
     "terminal",
     "monorepo",
+    "search",
+    "find",
     "copy",
+    "relative",
+    "absolute",
     "path",
     "utilities",
     "navigation"
