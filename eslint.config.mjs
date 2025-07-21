@@ -28,7 +28,17 @@ const typescriptConfigs = /** @type {import('eslint').Linter.Config[]} */ (
  */
 const eslintConfig = [
   // config for all
-  { ignores: ['**/node_modules/', '**/dist/', '**/out/', '**/fixtures/', '**/.vscode-test/', '**/.vscode-test-web/'] },
+  {
+    ignores: [
+      '**/node_modules/',
+      '**/dist/',
+      '**/dist-test/',
+      '**/out/',
+      '**/fixtures/',
+      '**/.vscode-test/',
+      '**/.vscode-test-web/',
+    ],
+  },
   { linterOptions: { reportUnusedDisableDirectives: true } },
 
   // config for javascript/typescript code
