@@ -47,6 +47,10 @@ runs:
           ${{ steps.cache-info.outputs.pnpm_store_path }}
           **/node_modules/.cache/
           !**/node_modules/**/node_modules/.cache/
+          **/node_modules/.vscode-test/
+          !**/node_modules/**/node_modules/.vscode-test/
+          **/node_modules/.vscode-test-web/
+          !**/node_modules/**/node_modules/.vscode-test-web/
         key: |
           ${{ inputs.restore-key-prefix }}-${{ steps.cache-info.outputs.os }}-w${{ steps.cache-info.outputs.week_number }}-lockfile-${{ steps.cache-info.outputs.lockfile_hash }}-pnpm${{ steps.cache-info.outputs.pnpm_version }}-node${{ steps.cache-info.outputs.node_version }}
         restore-keys: |
