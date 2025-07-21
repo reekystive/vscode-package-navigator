@@ -87,8 +87,9 @@ jobs:
             MAJOR=$(echo "$PACKAGE_VERSION" | cut -d. -f1)
             MINOR=$(echo "$PACKAGE_VERSION" | cut -d. -f2)
             NEXT_MINOR=$((MINOR + 1))
-            TIMESTAMP=$(date +%Y%m%d%H%M%S)
-            VERSION="${MAJOR}.${NEXT_MINOR}.${TIMESTAMP}"
+            # Use GitHub run number for guaranteed increment
+            PATCH="${{ github.run_number }}"
+            VERSION="${MAJOR}.${NEXT_MINOR}.${PATCH}"
           fi
           echo "version=${VERSION}" >> $GITHUB_OUTPUT
 

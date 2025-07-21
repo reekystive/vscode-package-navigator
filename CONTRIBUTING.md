@@ -165,7 +165,7 @@ This project uses a specific versioning strategy aligned with VS Code extension 
 #### Version Rules
 
 - **Stable Releases**: Use even minor versions (e.g., 0.4.0, 0.6.0, 1.0.0)
-- **Pre-releases**: Use odd minor versions (e.g., 0.5.20250721125959)
+- **Pre-releases**: Use odd minor versions (e.g., 0.5.123)
 
 #### Automated Versioning
 
@@ -173,8 +173,8 @@ The CI/CD pipeline automatically handles versioning:
 
 1. **Development Builds** (non-tag pushes):
    - Validates that `package.json` minor version is even
-   - Generates version: `{major}.{minor+1}.{timestamp}`
-   - Example: current package.json version `0.4.0` → pre-release version `0.5.20250721125959`
+   - Generates version: `{major}.{minor+1}.{ci_run_number}`
+   - Example: `0.4.0` → `0.5.123`
    - Published as pre-release
 
 2. **Release Builds** (tag pushes):
