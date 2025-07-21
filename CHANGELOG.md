@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/), and this 
 
 ## [Unreleased]
 
+## [0.4.0] - 2025-07-21
+
 - Updated command ids to be more descriptive and consistent
   - "package-navigator.revealPackageFolder" → "package-navigator.revealPackageJsonDir"
   - "package-navigator.openPackageFolderInTerminal" → "package-navigator.openPackageJsonDirInTerminal"
