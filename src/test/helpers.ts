@@ -3,8 +3,11 @@ import * as vscode from 'vscode';
 
 // Helper function to get absolute path to test fixtures
 export function getFixturePath(relativePath: string): string {
-  // Use process.cwd() to get the project root and then navigate to src/test/fixtures
-  return path.join(process.cwd(), 'src', 'test', 'fixtures', relativePath);
+  // Get the extension's directory from the extension context or fallback to process.cwd()
+  // The getFixturePath function uses process.cwd() which returns the current working directory, but in the
+  // Windows CI environment, VS Code is running from a different directory (.vscode-test/vscode-win32-x64-archive-1.102.1).
+  const extensionPath = vscode.extensions.getExtension('reekystive.package-navigator')?.extensionPath || process.cwd();
+  return path.join(extensionPath, 'src', 'test', 'fixtures', relativePath);
 }
 
 // Helper function to create a mock TextEditor
