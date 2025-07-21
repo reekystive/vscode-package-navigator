@@ -43,7 +43,6 @@ jobs:
   test:
     runs-on: ubuntu-latest
     name: Run tests
-    needs: lint
 
     steps:
       - name: Checkout repository
@@ -68,7 +67,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
     name: Build extension
-    needs: lint
 
     steps:
       - name: Checkout repository
