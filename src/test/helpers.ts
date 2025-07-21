@@ -3,7 +3,8 @@ import * as vscode from 'vscode';
 
 // Helper function to get absolute path to test fixtures
 export function getFixturePath(relativePath: string): string {
-  return path.join(__dirname, 'fixtures', relativePath);
+  // Use process.cwd() to get the project root and then navigate to src/test/fixtures
+  return path.join(process.cwd(), 'src', 'test', 'fixtures', relativePath);
 }
 
 // Helper function to create a mock TextEditor
