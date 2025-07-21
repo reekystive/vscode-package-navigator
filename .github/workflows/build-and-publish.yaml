@@ -71,6 +71,7 @@ jobs:
           MINOR_VERSION=$(echo "$PACKAGE_VERSION" | cut -d. -f2)
           if [ $((MINOR_VERSION % 2)) -ne 0 ]; then
             echo "Error: Minor version must be even. Current version: $PACKAGE_VERSION"
+            echo "::error title=Minor version must be even::Minor version in package.json must be even. Current version: $PACKAGE_VERSION"
             exit 1
           fi
           echo "Version validation passed: $PACKAGE_VERSION"
@@ -94,11 +95,17 @@ jobs:
 
       - name: Package extension (Pre-release)
         if: github.ref_type != 'tag'
-        run: pnpm vsce package --no-dependencies --pre-release --out "package-navigator-${{ steps.version.outputs.version }}.vsix"
+        run: |
+          pnpm vsce package --no-dependencies --pre-release --out "package-navigator-${{ steps.version.outputs.version }}.vsix"
+          echo "Build type: Pre-release" >> $GITHUB_STEP_SUMMARY
+          echo "Version: ${{ steps.version.outputs.version }}" >> $GITHUB_STEP_SUMMARY
 
       - name: Package extension (Release)
         if: github.ref_type == 'tag'
-        run: pnpm vsce package --no-dependencies --out "package-navigator-${{ steps.version.outputs.version }}.vsix"
+        run: |
+          pnpm vsce package --no-dependencies --out "package-navigator-${{ steps.version.outputs.version }}.vsix"
+          echo "Build type: Release" >> $GITHUB_STEP_SUMMARY
+          echo "Version: ${{ steps.version.outputs.version }}" >> $GITHUB_STEP_SUMMARY
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
