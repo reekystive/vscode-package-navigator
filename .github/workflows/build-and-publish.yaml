@@ -101,15 +101,15 @@ jobs:
           mv package.json.tmp package.json
 
           pnpm vsce package --no-dependencies --pre-release --out "package-navigator-${{ steps.version.outputs.version }}.vsix"
-          echo "Build type: Pre-release" >> $GITHUB_STEP_SUMMARY
-          echo "Version: ${{ steps.version.outputs.version }}" >> $GITHUB_STEP_SUMMARY
+          echo "📦 Build type: Pre-release" >> $GITHUB_STEP_SUMMARY
+          echo "🚀 Version: ${{ steps.version.outputs.version }}" >> $GITHUB_STEP_SUMMARY
 
       - name: Package extension (Release)
         if: github.ref_type == 'tag'
         run: |
           pnpm vsce package --no-dependencies --out "package-navigator-${{ steps.version.outputs.version }}.vsix"
-          echo "Build type: Release" >> $GITHUB_STEP_SUMMARY
-          echo "Version: ${{ steps.version.outputs.version }}" >> $GITHUB_STEP_SUMMARY
+          echo "📦 Build type: Release" >> $GITHUB_STEP_SUMMARY
+          echo "🚀 Version: ${{ steps.version.outputs.version }}" >> $GITHUB_STEP_SUMMARY
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
