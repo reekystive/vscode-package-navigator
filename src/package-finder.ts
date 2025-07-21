@@ -77,7 +77,7 @@ export async function getPackageName(packageJsonUri: string): Promise<string | n
     const packageJson = JSON.parse(contentString) as { name?: string };
     log(`Parsed package name: ${packageJson.name ?? 'null'}`);
 
-    return packageJson.name ?? null;
+    return packageJson.name?.trim() || null;
   } catch (error) {
     logError('Failed to read package.json', error);
     return null;
