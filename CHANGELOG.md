@@ -10,11 +10,12 @@ Added:
 
 - Versioning strategy documentation to CONTRIBUTING.md
 - Automated pre-release build and publish to CI/CD pipeline
+- CI test jobs under Linux, macOS and Windows
 
 Changed:
 
 - CI/CD pipeline now validates package.json minor versions must be even
-- Pre-release versions now use format {major}.{minor+1}.{timestamp}
+- Pre-release versions now use format {major}.{minor+1}.{ci_workflow_run}
 
 ## [0.4.0] - 2025-07-21
 
