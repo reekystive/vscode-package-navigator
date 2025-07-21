@@ -6,6 +6,16 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/), and this 
 
 ## [Unreleased]
 
+Added:
+
+- Versioning strategy documentation to CONTRIBUTING.md
+- Automated pre-release build and publish to CI/CD pipeline
+
+Changed:
+
+- CI/CD pipeline now validates package.json minor versions must be even
+- Pre-release versions now use format {major}.{minor+1}.{timestamp}
+
 ## [0.4.0] - 2025-07-21
 
 - Updated command ids to be more descriptive and consistent

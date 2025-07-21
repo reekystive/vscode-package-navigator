@@ -158,6 +158,37 @@ The extension is designed with modularity and cross-platform compatibility in mi
 - `getDetailedErrorMessage()` in `error-messages.ts`: Provides user-friendly error messages
 - `registerCommands()` in `commands.ts`: Registers all extension commands
 
+### Release & Versioning Strategy
+
+This project uses a specific versioning strategy aligned with VS Code extension conventions:
+
+#### Version Rules
+
+- **Stable Releases**: Use even minor versions (e.g., 0.4.0, 0.6.0, 1.0.0)
+- **Pre-releases**: Use odd minor versions (e.g., 0.5.20250721125959)
+
+#### Automated Versioning
+
+The CI/CD pipeline automatically handles versioning:
+
+1. **Development Builds** (non-tag pushes):
+   - Validates that `package.json` minor version is even
+   - Generates version: `{major}.{minor+1}.{timestamp}`
+   - Example: current package.json version `0.4.0` → pre-release version `0.5.20250721125959`
+   - Published as pre-release
+
+2. **Release Builds** (tag pushes):
+   - Uses exact version from `package.json`
+   - Must be even minor version
+   - Published as stable release
+
+#### Release Process
+
+1. **Development**: Keep `package.json` at even minor version (e.g., `0.4.0`)
+2. **Release**: Update `package.json` to next even minor version (e.g., `0.6.0`) and create git tag → triggers release with version from `package.json`
+
+This ensures clear separation between development previews and stable releases while adhering to VS Code's versioning constraints.
+
 ### Submitting Changes
 
 1. Ensure all tests pass

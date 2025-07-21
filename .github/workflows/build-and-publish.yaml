@@ -65,16 +65,30 @@ jobs:
       - name: Build extension
         run: pnpm run package
 
+      - name: Validate package version
+        run: |
+          PACKAGE_VERSION=$(jq -r '.version' package.json)
+          MINOR_VERSION=$(echo "$PACKAGE_VERSION" | cut -d. -f2)
+          if [ $((MINOR_VERSION % 2)) -ne 0 ]; then
+            echo "Error: Minor version must be even. Current version: $PACKAGE_VERSION"
+            exit 1
+          fi
+          echo "Version validation passed: $PACKAGE_VERSION"
+
       - name: Set version for packaging
         id: version
         run: |
-          COMMIT_HASH=$(git rev-parse --short HEAD)
-          TIMESTAMP=$(date +%Y%m%d)
+          COMMIT_HASH="${{ github.sha }}"
+          TIMESTAMP=$(date +%Y%m%d%H%M%S)
           if [[ "${{ github.ref_type }}" == "tag" ]]; then
             PACKAGE_VERSION=$(jq -r '.version' package.json)
             VERSION="${PACKAGE_VERSION}"
           else
-            VERSION="0.0.0-dev+ci.sha.${COMMIT_HASH}.${TIMESTAMP}"
+            PACKAGE_VERSION=$(jq -r '.version' package.json)
+            MAJOR=$(echo "$PACKAGE_VERSION" | cut -d. -f1)
+            MINOR=$(echo "$PACKAGE_VERSION" | cut -d. -f2)
+            NEXT_MINOR=$((MINOR + 1))
+            VERSION="${MAJOR}.${NEXT_MINOR}.${TIMESTAMP}"
           fi
           echo "version=${VERSION}" >> $GITHUB_OUTPUT
 
@@ -93,7 +107,7 @@ jobs:
           path: '*.vsix'
 
   publish-ovsx:
-    if: github.ref_type == 'tag'
+    if: github.ref_type == 'tag' || github.ref_type == 'branch'
     needs: build
     runs-on: ubuntu-latest
     name: Publish to Open VSX
@@ -127,7 +141,7 @@ jobs:
         run: ovsx publish --packagePath *.vsix --pat ${{ secrets.OVSX_TOKEN }}
 
   publish-vsce:
-    if: github.ref_type == 'tag'
+    if: github.ref_type == 'tag' || github.ref_type == 'branch'
     needs: build
     runs-on: ubuntu-latest
     name: Publish to VS Code Marketplace
