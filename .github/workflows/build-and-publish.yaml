@@ -79,8 +79,6 @@ jobs:
       - name: Set version for packaging
         id: version
         run: |
-          COMMIT_HASH="${{ github.sha }}"
-          TIMESTAMP=$(date +%Y%m%d%H%M%S)
           if [[ "${{ github.ref_type }}" == "tag" ]]; then
             PACKAGE_VERSION=$(jq -r '.version' package.json)
             VERSION="${PACKAGE_VERSION}"
@@ -89,6 +87,7 @@ jobs:
             MAJOR=$(echo "$PACKAGE_VERSION" | cut -d. -f1)
             MINOR=$(echo "$PACKAGE_VERSION" | cut -d. -f2)
             NEXT_MINOR=$((MINOR + 1))
+            TIMESTAMP=$(date +%Y%m%d%H%M%S)
             VERSION="${MAJOR}.${NEXT_MINOR}.${TIMESTAMP}"
           fi
           echo "version=${VERSION}" >> $GITHUB_OUTPUT
@@ -96,6 +95,10 @@ jobs:
       - name: Package extension (Pre-release)
         if: github.ref_type != 'tag'
         run: |
+          # Temporarily update package.json version for pre-release packaging
+          jq --arg version "${{ steps.version.outputs.version }}" '.version = $version' package.json > package.json.tmp
+          mv package.json.tmp package.json
+
           pnpm vsce package --no-dependencies --pre-release --out "package-navigator-${{ steps.version.outputs.version }}.vsix"
           echo "Build type: Pre-release" >> $GITHUB_STEP_SUMMARY
           echo "Version: ${{ steps.version.outputs.version }}" >> $GITHUB_STEP_SUMMARY
