@@ -8,8 +8,6 @@
     "types": ["node"],
     "emitDeclarationOnly": true,
     "declarationMap": true,
-    "rootDir": ".",
-    "outDir": "./node_modules/.cache/tsc-config",
     /* enable all strict type-checking options */
     "strict": true,
     /* Additional Checks */
@@ -20,10 +18,12 @@
     /* Report errors on unused parameters. */
     "noUnusedParameters": true,
     "useUnknownInCatchVariables": true,
-    "allowJs": true,
-    "checkJs": true,
     "composite": true,
-    "tsBuildInfoFile": "./node_modules/.cache/tsc-config/tsconfig.config.tsbuildinfo"
+    "rootDir": ".",
+    "outDir": "./node_modules/.cache/tsc-config",
+    "tsBuildInfoFile": "./node_modules/.cache/tsc-config/tsconfig.config.tsbuildinfo",
+    "allowJs": true,
+    "checkJs": true
   },
   "files": [".prettierrc.mjs", "eslint.config.mjs", ".vscode-test.mjs", "esbuild.mjs"],
   "exclude": ["**/node_modules/", "**/fixtures/"]
