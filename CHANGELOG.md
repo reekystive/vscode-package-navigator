@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/), and this 
 
 ## [Unreleased]
 
+## [0.4.1] - 2025-07-21
+
 Added:
 
 - Versioning strategy documentation to CONTRIBUTING.md
