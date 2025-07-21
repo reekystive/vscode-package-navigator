@@ -6,6 +6,16 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/), and this 
 
 ## [Unreleased]
 
+- Updated command ids to be more descriptive and consistent
+  - "package-navigator.revealPackageFolder" → "package-navigator.revealPackageJsonDir"
+  - "package-navigator.openPackageFolderInTerminal" → "package-navigator.openPackageJsonDirInTerminal"
+- Updated command names to be more descriptive and consistent
+  - "Open package.json" → "Open package.json of Active File"
+  - "Reveal Package Folder in Explorer View" → "Reveal package.json Folder in Explorer View"
+  - "Open package.json in Integrated Terminal" → "Open package.json Folder in Integrated Terminal"
+  - "Copy Package Name" → "Copy Package Name of Active File"
+- Added shortTitle properties to all commands for better UI display
+
 ## [0.2.2] - 2025-07-19
 
 - Add keywords to package.json for better discoverability
@@ -61,7 +71,7 @@ Added:
 - **Smart Package Detection**: Automatically finds the nearest `package.json` file for your current file
 - **Quick Navigation**: Open package.json files instantly from any file in your project
 - **Explorer Integration**: Reveal package.json files or package folders in the VS Code Explorer
-- **Terminal Support**: Open an integrated terminal in the package directory
+- **Terminal Support**: Open an integrated terminal in the package Folder
 - **Path Utilities**: Copy relative or absolute paths of package.json files
 - **Package Name Access**: Quickly copy package names to your clipboard
 - **Workspace Boundary Respect**: Searches within workspace boundaries to avoid conflicts

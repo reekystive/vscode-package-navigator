@@ -25,15 +25,15 @@ View this extension on [VS Code Marketplace](https://marketplace.visualstudio.co
 
 Access all commands through the Command Palette (Ctrl+Shift+P / Cmd+Shift+P):
 
-| Command                                  | Description                                         |
-| ---------------------------------------- | --------------------------------------------------- |
-| Open package.json                        | Opens the nearest package.json file in the editor   |
-| Reveal package.json in Explorer View     | Shows the package.json file in the VS Code Explorer |
-| Reveal Package Folder in Explorer View   | Shows the package folder in the VS Code Explorer    |
-| Open package.json in Integrated Terminal | Opens a terminal in the package directory           |
-| Copy Relative Path of package.json       | Copies the relative path to clipboard               |
-| Copy Absolute Path of package.json       | Copies the absolute path to clipboard               |
-| Copy Package Name                        | Copies the package name to clipboard                |
+| Command                                         | Description                                                                           |
+| ----------------------------------------------- | ------------------------------------------------------------------------------------- |
+| Open package.json of Active File                | Opens the nearest package.json of the active file in the editor                       |
+| Reveal package.json in Explorer View            | Shows the package.json of the active file in the VS Code Sidebar File Explorer        |
+| Reveal package.json Folder in Explorer View     | Shows the package.json folder of the active file in the VS Code Sidebar File Explorer |
+| Open package.json Folder in Integrated Terminal | Opens a VSCode integrated terminal in the package.json folder of the active file      |
+| Copy Relative Path of package.json              | Copies the relative path of the package.json of the active file to clipboard          |
+| Copy Absolute Path of package.json              | Copies the absolute path of the package.json of the active file to clipboard          |
+| Copy Package Name of Active File                | Copies the package name in the package.json of the active file to clipboard           |
 
 ## How It Works 🔍
 

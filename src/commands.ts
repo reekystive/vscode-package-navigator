@@ -5,7 +5,7 @@ import { log, logAndShowError, logError } from './logger.js';
 import { findPackageJson, getPackageName } from './package-finder.js';
 
 export function registerCommands(context: vscode.ExtensionContext) {
-  // Open package.json
+  // Open package.json of Active File
   const openPackageJson = vscode.commands.registerCommand('package-navigator.openPackageJson', async () => {
     log('=================================');
     log('Executing openPackageJson command');
@@ -28,7 +28,7 @@ export function registerCommands(context: vscode.ExtensionContext) {
     }
   });
 
-  // Reveal package.json in explorer
+  // Reveal package.json in Explorer View
   const revealPackageJson = vscode.commands.registerCommand('package-navigator.revealPackageJson', async () => {
     log('=================================');
     log('Executing revealPackageJson command');
@@ -49,39 +49,39 @@ export function registerCommands(context: vscode.ExtensionContext) {
     }
   });
 
-  // Reveal package folder in explorer
-  const revealPackageFolder = vscode.commands.registerCommand('package-navigator.revealPackageFolder', async () => {
+  // Reveal package.json Folder in Explorer View
+  const revealPackageJsonDir = vscode.commands.registerCommand('package-navigator.revealPackageJsonDir', async () => {
     log('=================================');
-    log('Executing revealPackageFolder command');
+    log('Executing revealPackageJsonDir command');
 
     const packageJsonUri = await findPackageJson();
     if (!packageJsonUri) {
-      logAndShowError('revealPackageFolder failed', getDetailedErrorMessage());
+      logAndShowError('revealPackageJsonDir failed', getDetailedErrorMessage());
       return;
     }
 
-    log(`Revealing package folder in explorer for: ${packageJsonUri}`);
+    log(`Revealing package.json folder in explorer for: ${packageJsonUri}`);
     try {
       const uri = vscode.Uri.parse(packageJsonUri);
       const packageDir = Utils.dirname(uri);
       await vscode.commands.executeCommand('revealInExplorer', packageDir);
-      log('Successfully revealed package folder in explorer');
+      log('Successfully revealed package.json folder in explorer');
     } catch (error) {
-      logError('Failed to reveal package folder in explorer', error);
-      vscode.window.showErrorMessage('Failed to reveal package folder in explorer');
+      logError('Failed to reveal package.json folder in explorer', error);
+      vscode.window.showErrorMessage('Failed to reveal package.json folder in explorer');
     }
   });
 
-  // Open package.json in integrated terminal
-  const openPackageJsonInTerminal = vscode.commands.registerCommand(
-    'package-navigator.openPackageJsonInTerminal',
+  // Open package.json Folder in Integrated Terminal
+  const openPackageJsonDirInTerminal = vscode.commands.registerCommand(
+    'package-navigator.openPackageJsonDirInTerminal',
     async () => {
       log('=================================');
-      log('Executing openPackageJsonInTerminal command');
+      log('Executing openPackageJsonDirInTerminal command');
 
       const packageJsonUri = await findPackageJson();
       if (!packageJsonUri) {
-        logAndShowError('openPackageJsonInTerminal failed', getDetailedErrorMessage());
+        logAndShowError('openPackageJsonDirInTerminal failed', getDetailedErrorMessage());
         return;
       }
 
@@ -91,21 +91,21 @@ export function registerCommands(context: vscode.ExtensionContext) {
         const uri = vscode.Uri.parse(packageJsonUri);
         const packageDir = Utils.dirname(uri);
 
-        log(`Opening terminal in package directory: ${packageDir.toString()}`);
+        log(`Opening terminal in package.json folder: ${packageDir.toString()}`);
         const terminal = vscode.window.createTerminal({
           name: terminalName,
           cwd: packageDir,
         });
         terminal.show();
-        log('Successfully opened terminal in package directory');
+        log('Successfully opened terminal in package.json folder');
       } catch (error) {
-        logError('Failed to open terminal in package directory', error);
-        vscode.window.showErrorMessage('Failed to open terminal in package directory');
+        logError('Failed to open terminal in package.json folder', error);
+        vscode.window.showErrorMessage('Failed to open terminal in package.json folder');
       }
     }
   );
 
-  // Copy relative path of package.json
+  // Copy Relative Path of package.json
   const copyPackageJsonRelativePath = vscode.commands.registerCommand(
     'package-navigator.copyPackageJsonRelativePath',
     async () => {
@@ -131,7 +131,7 @@ export function registerCommands(context: vscode.ExtensionContext) {
     }
   );
 
-  // Copy absolute path of package.json
+  // Copy Absolute Path of package.json
   const copyPackageJsonAbsolutePath = vscode.commands.registerCommand(
     'package-navigator.copyPackageJsonAbsolutePath',
     async () => {
@@ -157,7 +157,7 @@ export function registerCommands(context: vscode.ExtensionContext) {
     }
   );
 
-  // Copy package name
+  // Copy Package Name of Active File
   const copyPackageName = vscode.commands.registerCommand('package-navigator.copyPackageName', async () => {
     log('=================================');
     log('Executing copyPackageName command');
@@ -188,8 +188,8 @@ export function registerCommands(context: vscode.ExtensionContext) {
   context.subscriptions.push(
     openPackageJson,
     revealPackageJson,
-    revealPackageFolder,
-    openPackageJsonInTerminal,
+    revealPackageJsonDir,
+    openPackageJsonDirInTerminal,
     copyPackageJsonRelativePath,
     copyPackageJsonAbsolutePath,
     copyPackageName
