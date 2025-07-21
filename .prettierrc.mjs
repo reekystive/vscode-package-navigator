@@ -7,6 +7,7 @@ export default {
   tabWidth: 2,
   plugins: ['prettier-plugin-organize-imports'],
   organizeImportsSkipDestructiveCodeActions: true,
+  endOfLine: 'lf',
   overrides: [
     {
       files: 'tsconfig{,.*}.json',
