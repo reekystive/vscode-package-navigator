@@ -1,3 +1,5 @@
+<!-- markdownlint-disable MD024 -->
+
 # Change Log
 
 All notable changes to the Node.js Package Navigator extension will be documented in this file.
@@ -8,13 +10,13 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/), and this 
 
 ## [0.4.1] - 2025-07-21
 
-Added:
+### Added
 
 - Versioning strategy documentation to CONTRIBUTING.md
 - Automated pre-release build and publish to CI/CD pipeline
 - CI test jobs under Linux, macOS and Windows
 
-Changed:
+### Changed
 
 - CI/CD pipeline now validates package.json minor versions must be even
 - Pre-release versions now use format {major}.{minor+1}.{ci_workflow_run}
@@ -81,7 +83,7 @@ Changed:
 
 ## [0.1.0] - 2025-07-18
 
-Added:
+### Added
 
 - **Smart Package Detection**: Automatically finds the nearest `package.json` file for your current file
 - **Quick Navigation**: Open package.json files instantly from any file in your project
@@ -91,7 +93,7 @@ Added:
 - **Package Name Access**: Quickly copy package names to your clipboard
 - **Workspace Boundary Respect**: Searches within workspace boundaries to avoid conflicts
 
-Commands:
+### Commands
 
 - Open package.json
 - Reveal package.json in Explorer View
@@ -101,7 +103,7 @@ Commands:
 - Copy Absolute Path of package.json
 - Copy Package Name
 
-Technical Details:
+### Technical Details
 
 - Built with TypeScript and VS Code Extension API
 - Uses ESBuild for efficient bundling
